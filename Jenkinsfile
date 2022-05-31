@@ -1,20 +1,23 @@
 pipeline {
   agent any
   stages {
+    stage('build') {
+      steps {
+        sh 'pwd'
+      }
+    }
+
     stage('test') {
       parallel {
         stage('test') {
           steps {
-            sh '''pwd
-date'''
+            echo 'for test'
           }
         }
 
-        stage('prod') {
+        stage('preprod') {
           steps {
-            sh '''ls
-u
-whoami'''
+            sh 'ls'
           }
         }
 
@@ -23,7 +26,7 @@ whoami'''
 
     stage('deploy') {
       steps {
-        echo 'it is deploy'
+        echo 'finally done'
       }
     }
 
